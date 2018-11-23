@@ -22,7 +22,7 @@ body = <<EOF
 EOF
 
 res = Nokogiri::HTML.parse(html, nil, "utf-8")
-res.xpath('//div[@class="update-frame"]/dl').first(10).each_with_index do |obj, i|
+res.xpath('//div[@class="update-frame"]/dl').each_with_index do |obj, i|
   # item
   body += "<item>"
 
