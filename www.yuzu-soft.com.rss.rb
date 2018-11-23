@@ -4,7 +4,7 @@ require "rubygems"
 require "nokogiri"
 require "open-uri"
 require "date"
-require "shinatra"
+require "sinatra"
 
 get '/' do
 
