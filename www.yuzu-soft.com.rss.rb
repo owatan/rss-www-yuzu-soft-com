@@ -6,8 +6,6 @@ require "open-uri"
 require "date"
 require "sinatra"
 
-get '/' do
-
 URL = "http://www.yuzu-soft.com/"
 
 html = open(URL) do |f|
@@ -15,7 +13,7 @@ html = open(URL) do |f|
 end
 
 # header
-puts <<EOF
+body = <<EOF
 <rss version='2.0'>
   <channel>
     <title>新着情報 | ゆずソフト</title>
@@ -26,10 +24,10 @@ EOF
 res = Nokogiri::HTML.parse(html, nil, "utf-8")
 res.xpath('//div[@class="update-frame"]/dl').first(10).each_with_index do |obj, i|
   # item
-  puts "<item>"
+  body += "<item>"
 
   # title
-  puts "<title>" + obj.xpath('//dd')[i].text + "</title>"
+  body += "<title>" + obj.xpath('//dd')[i].text + "</title>"
 
   # link
   if obj.xpath('//dd/a/@href')[i].include?("http://")
@@ -41,20 +39,22 @@ res.xpath('//div[@class="update-frame"]/dl').first(10).each_with_index do |obj, 
     # => だいたい同ドメイン内の相対リンク
       link = "http://www.yuzu-soft.com/" + obj.xpath('//dd/a/@href')[i]
   end
-  puts "<link>" + link + "</link>"
+  body += "<link>" + link + "</link>"
 
   # pubDate
   date = DateTime.parse( obj.xpath('//dt')[i].text + " 00:00 JST" )
-  puts "<pubDate>" + date.rfc2822 + "</pubDate>"
+  body += "<pubDate>" + date.rfc2822 + "</pubDate>"
 
   # /item
-  puts "</item>"
+  body += "</item>"
 end
 
 # footer
-puts <<EOF
+body += <<EOF
   </channel>
 </rss>
 EOF
 
+get '/' do
+  body
 end
