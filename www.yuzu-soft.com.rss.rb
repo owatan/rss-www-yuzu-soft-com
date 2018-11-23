@@ -56,5 +56,6 @@ body += <<EOF
 EOF
 
 get '/' do
+  response.headers["Content-Type"] = "application/rss+xml"
   body
 end
