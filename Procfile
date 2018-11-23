@@ -1,1 +1,1 @@
-worker: ruby ./www.yuzu-soft.com.rss.rb
+web: ruby ./www.yuzu-soft.com.rss.rb
