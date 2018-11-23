@@ -57,8 +57,9 @@ EOF
 
 get '/' do
   #response.headers["Content-Type"] = "application/rss+xml"
-  response[:headers] = "application/rss+xml"
-  response[:charset] = "utf-8"
+  headers \
+    "charset" => "utf-8",
+    "Content-Type" => "application/rss+xml"
 
   body
 end
