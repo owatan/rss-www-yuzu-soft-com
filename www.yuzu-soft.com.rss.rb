@@ -56,6 +56,9 @@ body += <<EOF
 EOF
 
 get '/' do
-  response.headers["Content-Type"] = "application/rss+xml"
+  #response.headers["Content-Type"] = "application/rss+xml"
+  response[:headers] = "application/rss+xml"
+  response[:charset] = "utf-8"
+
   body
 end
