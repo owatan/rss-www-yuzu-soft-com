@@ -4,6 +4,9 @@ require "rubygems"
 require "nokogiri"
 require "open-uri"
 require "date"
+require "shinatra"
+
+get '/' do
 
 URL = "http://www.yuzu-soft.com/"
 
@@ -53,3 +56,5 @@ puts <<EOF
   </channel>
 </rss>
 EOF
+
+end
