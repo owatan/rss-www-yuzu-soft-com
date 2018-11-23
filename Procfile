@@ -1,1 +1,1 @@
-web: ruby ./www.yuzu-soft.com.rss.rb
+web: bundle exec ruby www.yuzu-soft.com.rss.rb -p $PORT
