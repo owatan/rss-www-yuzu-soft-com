@@ -30,7 +30,7 @@ res.xpath('//div[@class="update-frame"]/dl').each_with_index do |obj, i|
   body += "<title>" + obj.xpath('//dd')[i].text + "</title>"
 
   # link
-  if obj.xpath('//dd/a/@href')[i].include?("http://")
+  if obj.xpath('//dd/a/@href')[i].include?("http")
     # http(s) が含まれる
     # => だいたい絶対リンク
       link = obj.xpath('//dd/a/@href')[i]
